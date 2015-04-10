@@ -4,7 +4,9 @@ A re-creation of the WW2 Nazi Enigma Encryption Machine in Java.
 
   === ABOUT
   This package re-creates the Enigma Machine used in WW2. Unlike the original machine that used a 3-rotor system, this package supports a (somewhat) unlimited number of rotors. It is a work in progress but can currently be used to:
+  
     -Encrypt/decrypt strings
+  
     -Print Plugboard/Rotor/Reflector configurations
 
 Soon to be implemented:
