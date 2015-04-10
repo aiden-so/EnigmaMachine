@@ -10,6 +10,7 @@ A re-creation of the WW2 Nazi Enigma Encryption Machine in Java.
     -Print Plugboard/Rotor/Reflector configurations
 
 Soon to be implemented:
+
     -Import/Export configuration ability
     -String output for encrypted contents
     -Full integration of Keyboard class (better input sanitation and handling)
