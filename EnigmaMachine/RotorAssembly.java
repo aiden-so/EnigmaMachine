@@ -1,5 +1,8 @@
+//Uses an arraylist to hold all the rotor objects
 import java.util.ArrayList;
 
+//This class holds the rotors and the reflector used to encrypt/decrypt, as well as co-ordinating
+//the actual encryption, decryption and rotor shifting
 public class RotorAssembly
 {
     ArrayList<Rotor> RotorArray;
@@ -29,8 +32,7 @@ public class RotorAssembly
     
     public void printRotorConfiguration()
     {
-        StringBuilder output = new StringBuilder();
-        
+        //Print all the rotors in RotorArray
         for (int index = 0; index < RotorArray.size(); index++)
         {
             System.out.println("Rotor " + (index+1) + ":");
@@ -39,6 +41,7 @@ public class RotorAssembly
             ArrayTools.printArray(current.getInputSide());
             ArrayTools.printArray(current.getOutputSide());
         }
+        //Print reflector
         System.out.println("Reflector:");
         AssemblyReflector.printReflector();
     }
@@ -63,7 +66,8 @@ public class RotorAssembly
             output = currentRotor.forwardPass(output);
         }
         
-        //rotate();
+        //RotorAssembly will work out what rotors need to be rotated and then do so
+        rotate();
         
         return output;
     }
@@ -72,19 +76,24 @@ public class RotorAssembly
     {
         char output = input;
         
+        //Loops backwards through the RotorArray
         for (int index = RotorArray.size() - 1; index >= 0; index--)
         {
             Rotor currentRotor = RotorArray.get(index);
             output = currentRotor.reversePass(output);
         }
         
-        //rotate();
+        //RotorAssembly will work out what rotors need to be rotated and then do so
+        rotate();
         
         return output;
     }
     
+    //Determines what rotors must be rotated, calls shiftRotor method of Rotor class to do so
     public void rotate()
     {
+        //shiftNext holds if the next rotor will be rotated; true by default because the first rotor is
+        //always shifted
         boolean shiftNext = true;
         
         for (Rotor currentRotor : RotorArray)
@@ -93,10 +102,11 @@ public class RotorAssembly
             {
                 currentRotor.shiftRotor();
                 currentRotor.rotationCount += 1;
+                //If the current rotor has been rotated 26 times, rotate the next one
                 if (currentRotor.rotationCount == 26)
                 {
                     shiftNext = true;
-                    currentRotor.rotationCount = 1;
+                    currentRotor.rotationCount = 0;
                 } else {
                     shiftNext = false;
                 }
