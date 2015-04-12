@@ -118,6 +118,11 @@ public class EnigmaMachine
     {
         char output;
         
+        if (input == ' ')
+        {
+            return input;
+        }
+        
         output = ShiftBoard.reverseRoute(input);
         output = Rotors.encrypt(output);
         output = ShiftBoard.reverseRoute(output);
