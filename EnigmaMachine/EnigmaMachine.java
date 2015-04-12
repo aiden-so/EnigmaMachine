@@ -55,9 +55,10 @@ public class EnigmaMachine
     //      ENCRYPTION
     
     //Encrypts a string input and returns an encrypted char array
-    public char[] encryptInput(String input)
+    public String encryptInput(String input)
     {
-        return encryptCharArray(Input.parseToChar(input));
+        String output = new String(encryptCharArray(Input.parseToChar(input)));
+        return output;
     }
     
     //Encrypts all the characters in a char array, returns an encrypted array
@@ -93,9 +94,10 @@ public class EnigmaMachine
     //      DECRYPTION
     
     //Decrypts a string and returns a char array
-    public char[] decryptInput(String input)
+    public String decryptInput(String input)
     {
-        return decryptCharArray(Input.parseToChar(input));
+        String decryptedOutput = new String(decryptCharArray(Input.parseToChar(input)));
+        return decryptedOutput;
     }
     
     //Decrypts a char array and returns a new one in plaintext
