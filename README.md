@@ -3,6 +3,7 @@ A re-creation of the WW2 Nazi Enigma Encryption Machine in Java.
 
 
   === ABOUT
+  
   This package re-creates the Enigma Machine used in WW2. Unlike the original machine that used a 3-rotor system, this package supports a (somewhat) unlimited number of rotors. It is a work in progress but can currently be used to:
   
     -Encrypt/decrypt strings
@@ -17,6 +18,7 @@ Soon to be implemented:
 
 
   === HOW IT WORKS
+  
 Initial input is handled differently depending on type (strings are parsed into char arrays, char arrays and chars are not modified). Each char is then routed through the plugboard, and that output is run through every rotor in the RotorAssembly.
 The rotors work by using two sides, the 'in' side containing a char array of a normal alphabet, and an 'out' side with a scrambled alphabet. On encryption, the index of the input char is found on the in side and the relevant index of the out side is returned. For the next stage of encryption that char is then used.
 
@@ -27,6 +29,7 @@ A better understanding can be gained by creating an enigmaMachine object and cal
 
 
   === HOW TO USE IT
+  
     1. Create an EnigmaMachine object.
     2. Input the desired number of rotors.
     3. To encrypt a string, call 'encryptInput' (or 'decryptInput')
@@ -36,4 +39,5 @@ A better understanding can be gained by creating an enigmaMachine object and cal
 
 
   === LICENSE
+  
 Licensed under a GNU General Public License. See the license file in the root folder for more information.
