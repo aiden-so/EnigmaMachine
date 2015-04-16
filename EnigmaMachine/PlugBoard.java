@@ -4,15 +4,13 @@
 //the characters index
 public class PlugBoard
 {
-    private int alphabetSize;
-    
     private char[] plugArray;
     private char[] alphabet;
     
     public PlugBoard()
     {
-        //Class standard alphabetSize taken from EnigmaMachine static
-        alphabetSize = EnigmaMachine.alphabetSize;
+        //Class standard alphabetSize taken from EnigmaMachine
+        int alphabetSize = EnigmaMachine.alphabetSize;
         
         //The randomised array used for routing
         plugArray = new char[alphabetSize];
@@ -35,12 +33,6 @@ public class PlugBoard
         plugArray = customArray;
     }
     
-    //Returns plugArray
-    public char[] getPlugArray()
-    {
-        return plugArray;
-    }
-    
     //Finds the index of input in the alphabet array then gets the char on plugArray with the same index
     //Used for encryption
     public char forwardRoute(char input)
@@ -53,5 +45,11 @@ public class PlugBoard
     public char reverseRoute(char input)
     {
         return alphabet[ArrayTools.getIndex(input, plugArray)];
+    }
+    
+    //Allows for the object to export its current configuration
+    public char[] exportConfig()
+    {
+        return plugArray;
     }
 }
