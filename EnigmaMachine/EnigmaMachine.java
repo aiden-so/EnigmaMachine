@@ -2,17 +2,19 @@
 //the nazi party in the second world war. However the original machine implemented only 3 rotors
 //in its encryption system, this package supports an unlimited (to an extent) number of rotors.
 //See the readme for more details and examples.
+
+import java.util.*;
+
 public class EnigmaMachine
 {
     //This is the static constant for alphabetsize used by almost all classes
     public static final int alphabetSize = 26;
     
-    //Rotors is the bject that holds all the rotors and the reflector
+    //Rotors is the object that holds all the rotors and the reflector
+    //Savemachine is used to import/export machine configurations
     RotorAssembly Rotors;
     PlugBoard ShiftBoard;
     Keyboard Input;
-    
-    //Used to import/export machine configurations
     ConfigSave SaveMachine;
     
     public EnigmaMachine(int numberOfRotors)
@@ -29,7 +31,7 @@ public class EnigmaMachine
     //Returns the plugboard setup (matched against a standard alphabet)
     public char[] getPlugBoard()
     {
-        return ShiftBoard.getPlugArray();
+        return ShiftBoard.exportConfig();
     }
     
     //Generates a new random char array and uses it for the plugboard
@@ -47,9 +49,27 @@ public class EnigmaMachine
         System.out.printf("Plugboard:\n");
         //Prints a standard alphabet for matching, then the actual layout
         ArrayTools.printArray(ArrayTools.resetAlphabet());
-        ArrayTools.printArray(ShiftBoard.getPlugArray());
+        ArrayTools.printArray(ShiftBoard.exportConfig());
         //Rotors and reflector
         Rotors.printRotorConfiguration();
+    }
+    
+    //Gathers all the configurations and passes them to the saving object
+    public void saveConfiguration()
+    {
+        //Linked list to hold the configuration
+        List<char[]> Configuration = new LinkedList<char[]>();
+        
+        Configuration.add(ShiftBoard.exportConfig());
+        Configuration.addAll(Rotors.exportConfig());
+        
+        //Pass it to the ConfigSave object
+        SaveMachine.save(Configuration);
+    }
+    
+    public List<char[]> getConfiguration()
+    {
+        return SaveMachine.getConfig();
     }
     
     //      ENCRYPTION
