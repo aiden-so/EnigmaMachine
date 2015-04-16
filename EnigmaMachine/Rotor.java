@@ -72,4 +72,10 @@ public class Rotor
         
         return output;
     }
+    
+    //Exports the configuration of the scrambled side
+    public char[] exportConfig()
+    {
+        return outputSide;
+    }
 }
