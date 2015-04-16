@@ -28,4 +28,10 @@ public class Reflector
     {
         ArrayTools.printArray(alphabet);
     }
+    
+    //Exports the configuration
+    public char[] exportConfig()
+    {
+        return alphabet;
+    }
 }
