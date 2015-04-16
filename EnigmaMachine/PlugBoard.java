@@ -54,4 +54,10 @@ public class PlugBoard
     {
         return alphabet[ArrayTools.getIndex(input, plugArray)];
     }
+    
+    //Allows for the object to export its current configuration
+    public char[] exportConfig()
+    {
+        return plugArray;
+    }
 }
