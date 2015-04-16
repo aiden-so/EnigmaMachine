@@ -1,6 +1,7 @@
-//These imports are used for writing configurations to file
+//These imports are used for writing configurations to file and handling Lists
 import java.io.FileWriter;
 import java.io.File;
+import java.util.*;
 
 //This class exports and imports configurations for plugboard, rotors and reflector. Used to share configurations
 //so that different people can encrypt/decrypt with the same initial setup
@@ -8,12 +9,20 @@ import java.io.File;
 public class ConfigSave
 {
     //Stores the configuration output
-    StringBuilder Settings;
+    private StringBuilder Settings;
+    
+    private List<char[]> Config;
     
     //Constructor method- initializes the output StringBuilder object
     public ConfigSave()
     {
+        Config = new LinkedList<char[]>();
         Settings = new StringBuilder();
+    }
+    
+    public void save(List<char[]> ConfigInput)
+    {
+        Config = ConfigInput;
     }
     
     //Adds each value of the array provided to the Settings object
