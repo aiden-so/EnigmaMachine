@@ -99,4 +99,15 @@ public class ArrayTools
         
         System.out.println();
     }
+
+    //Finds if an element is in a given array
+    public static boolean in(char input, char[] array)
+    {
+        for (char c : resetAlphabet())
+        {
+            if (c == input)
+                return true;
+        }
+        return false;
+    }
 }
