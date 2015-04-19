@@ -8,7 +8,7 @@ public class Keyboard
     //Gets a string input, converts it to a char array, makes it lower case then returns it
     public char[] getFormattedInput(String input)
     {
-        return convertCharArrayToLower(parseToChar(input));
+        return toLower(parseToChar(input));
     }
     
     //parse a String to a char array, then return
@@ -18,7 +18,7 @@ public class Keyboard
     }
     
     //for every index of the input array it converts it to lower case then returns
-    public char[] convertCharArrayToLower(char[] input)
+    public char[] toLower(char[] input)
     {
         for (int index = 0; index < input.length; index++)
         {
