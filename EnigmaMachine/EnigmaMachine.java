@@ -77,7 +77,7 @@ public class EnigmaMachine
     //Encrypts a string input and returns an encrypted char array
     public String encryptInput(String input)
     {
-        String output = new String(encryptCharArray(Input.parseToChar(input)));
+        String output = new String(encryptCharArray(Input.getFormattedInput((input))));
         return output;
     }
     
@@ -88,7 +88,12 @@ public class EnigmaMachine
         
         for (int index = 0; index < input.length; index++)
         {
-            encryptedOutput[index] = encryptChar(input[index]);
+            if (ArrayTools.in(input[index], input))
+            {
+                encryptedOutput[index] = encryptChar(input[index]);
+            } else {
+                encryptedOutput[index] = input[index];
+            }
         }
         
         return encryptedOutput;
@@ -98,11 +103,6 @@ public class EnigmaMachine
     public char encryptChar(char input)
     {
         char output;
-        
-        if (input == ' ')
-        {
-            return input;
-        }
         
         output = ShiftBoard.forwardRoute(input);
         output = Rotors.encrypt(output);
@@ -116,7 +116,7 @@ public class EnigmaMachine
     //Decrypts a string and returns a char array
     public String decryptInput(String input)
     {
-        String decryptedOutput = new String(decryptCharArray(Input.parseToChar(input)));
+        String decryptedOutput = new String(decryptCharArray(Input.getFormattedInput(input)));
         return decryptedOutput;
     }
     
@@ -127,7 +127,12 @@ public class EnigmaMachine
         
         for (int index = 0; index < input.length; index++)
         {
-            decryptedOutput[index] = decryptChar(input[index]);
+            if (ArrayTools.in(input[index], input))
+            {
+                decryptedOutput[index] = decryptChar(input[index]);
+            } else {
+                decryptedOutput[index] = input[index];
+            }
         }
         
         return decryptedOutput;
@@ -137,11 +142,6 @@ public class EnigmaMachine
     public char decryptChar(char input)
     {
         char output;
-        
-        if (input == ' ')
-        {
-            return input;
-        }
         
         output = ShiftBoard.reverseRoute(input);
         output = Rotors.encrypt(output);
