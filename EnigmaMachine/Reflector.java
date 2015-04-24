@@ -23,9 +23,9 @@ public class Reflector
         return alphabet[(alphabetSize - ArrayTools.getIndex(input, alphabet)) - 1];
     }
     
-    //Uses ArrayTools to print the reflector array (alphabet)
-    public void printReflector()
+    //Exports the configuration
+    public char[] exportConfig()
     {
-        ArrayTools.printArray(alphabet);
+        return alphabet;
     }
 }

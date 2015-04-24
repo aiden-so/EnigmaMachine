@@ -10,13 +10,13 @@ public class Keyboard
     {
         return toLower(parseToChar(input));
     }
-    
+
     //parse a String to a char array, then return
     public char[] parseToChar(String input)
     {
         return input.toCharArray();
     }
-    
+
     //for every index of the input array it converts it to lower case then returns
     public char[] toLower(char[] input)
     {
@@ -24,7 +24,7 @@ public class Keyboard
         {
             input[index] = Character.toLowerCase(input[index]);
         }
-        
+
         return input;
     }
 }

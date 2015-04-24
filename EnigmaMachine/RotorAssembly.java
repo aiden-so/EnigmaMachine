@@ -1,5 +1,5 @@
-//Uses an arraylist to hold all the rotor objects
-import java.util.ArrayList;
+//Uses an arraylist to hold all the rotor objects, and a linked list for configuration export
+import java.util.*;
 
 //This class holds the rotors and the reflector used to encrypt/decrypt, as well as co-ordinating
 //the actual encryption, decryption and rotor shifting
@@ -21,29 +21,27 @@ public class RotorAssembly
         createRotors(numberOfRotors);
         AssemblyReflector = new Reflector();
     }
-    
+
+    //Returns the configuration of the Reflector and Rotors
+    public List<char[]> exportConfig()
+    {
+        List<char[]> Configuration = new LinkedList<char[]>();
+
+        Configuration.add(AssemblyReflector.exportConfig());
+        for (Rotor currentRotor : RotorArray)
+        {
+            Configuration.add(currentRotor.exportConfig());
+        }
+
+        return Configuration;
+    }
+
     public void createRotors (int numberOfRotors)
     {
         for (int c = 0; c < numberOfRotors; c++)
         {
             RotorArray.add(new Rotor());
         }
-    }
-    
-    public void printRotorConfiguration()
-    {
-        //Print all the rotors in RotorArray
-        for (int index = 0; index < RotorArray.size(); index++)
-        {
-            System.out.println("Rotor " + (index+1) + ":");
-            
-            Rotor current = RotorArray.get(index);
-            ArrayTools.printArray(current.getInputSide());
-            ArrayTools.printArray(current.getOutputSide());
-        }
-        //Print reflector
-        System.out.println("Reflector:");
-        AssemblyReflector.printReflector();
     }
     
     public char encrypt(char input)
