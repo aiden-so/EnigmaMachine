@@ -27,12 +27,6 @@ public class PlugBoard
         plugArray = ArrayTools.randomAlphabetArray();
     }
 
-    //Assigns plugArray as the input, allows for custom plugArrays
-    public void customPlugBoard(char[] customArray)
-    {
-        plugArray = customArray;
-    }
-
     //Finds the index of input in the alphabet array then gets the char on plugArray with the same index
     //Used for encryption
     public char forwardRoute(char input)
@@ -51,5 +45,11 @@ public class PlugBoard
     public char[] exportConfig()
     {
         return plugArray;
+    }
+
+    //Speaks for itself, imports and assigns a configuration
+    public void importConfig(char[] input)
+    {
+        plugArray = input;
     }
 }

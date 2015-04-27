@@ -17,32 +17,8 @@ public class Rotor
         //inputSide and outputSide are both char arrays, inputSide is a regular alphabet and outputSide is random
         inputSide = new char[alphabetSize];
         outputSide = new char[alphabetSize];
-        inputSide = generateStandardAlphabet();
-        outputSide = generateRandomAlphabet();
-    }
-    
-    //Calls ArrayTools to return a random char alphabet array
-    public char[] generateRandomAlphabet()
-    {
-        return ArrayTools.randomAlphabetArray();
-    }
-    
-    //Calls ArrayTools to return a standard alphabet in char[] form
-    public char[] generateStandardAlphabet()
-    {
-        return ArrayTools.resetAlphabet();
-    }
-    
-    //Returns the input side of the rotor (standard alphabet)
-    public char[] getInputSide()
-    {
-        return inputSide;
-    }
-    
-    //Returns the output side of the rotor (scrambled alphabet)
-    public char[] getOutputSide()
-    {
-        return outputSide;
+        inputSide = ArrayTools.resetAlphabet();
+        outputSide = ArrayTools.randomAlphabetArray();
     }
     
     //Shifts the output side of the rotor one position, increments the rotation count
@@ -52,30 +28,36 @@ public class Rotor
         
         rotationCount += 1;
     }
-    
+
+    public char pass(char input, char[] selectSide, char[] outSide)
+    {
+        int index = ArrayTools.getIndex(input, selectSide);
+        input = outSide[index];
+
+        return input;
+    }
+
     //Finds the index of the input in the input side then returns the corresponding char (by index) of the output side
     public char forwardPass(char input)
     {
-        char output;
-        int index = ArrayTools.getIndex(input, inputSide);
-        output = outputSide[index];
-        
-        return output;
+        return pass(input, inputSide, outputSide);
     }
     
     //Finds the index of the input in the output side then returns the corresponding char (by index) of the input side
     public char reversePass(char input)
     {
-        char output;
-        int index = ArrayTools.getIndex(input, outputSide);
-        output = inputSide[index];
-        
-        return output;
+        return pass(input, outputSide, inputSide);
     }
     
     //Exports the configuration of the scrambled side
     public char[] exportConfig()
     {
         return outputSide;
+    }
+
+    //Speaks for itself, imports and assigns a configuration
+    public void importConfig(char[] input)
+    {
+        outputSide = input;
     }
 }

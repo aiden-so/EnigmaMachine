@@ -11,7 +11,14 @@ public class ArrayTools
     //Returns a standard-order alphabet
     public static char[] resetAlphabet()
     {
-        return new char[] {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
+        char[] alphabet = new char[alphabetSize];
+
+        for (char c = 'a'; c <= 'z'; c++)
+        {
+            //97 shifts 'a' to 0 and so on
+            alphabet[c - 97] = c;
+        }
+        return alphabet;
     }
 
     //Returns a scrambled alphabet
@@ -59,24 +66,26 @@ public class ArrayTools
     //Returns the given rotor-array, shifted one position down
     public static char[] shift(char[] rotorArray)
     {
-        char[] outputRotor = new char[alphabetSize];
-        //Move the char of the last position to the first
-        outputRotor[0] = rotorArray[rotorArray.length - 1];
+        //Save the last char to be moved to the front of the new array
+        char shiftChar = rotorArray[rotorArray.length - 1];
 
         //Loops through the array and makes the previous index value the current one
         for (int index = rotorArray.length - 1; index > 0; index--)
         {
-            outputRotor[index] = rotorArray[index - 1];
+            rotorArray[index] = rotorArray[index - 1];
         }
+        //Add the saved value back on
+        rotorArray[0] = shiftChar;
 
-        return outputRotor;
+        return rotorArray;
     }
+
 
     //Returns the index value of the given char in a given array
     public static int getIndex(char input, char[] array)
     {
         //Returns c (the index) as soon as it is found
-        for (int c = 0; c < alphabetSize; c++)
+        for (int c = 0; c < array.length; c++)
         {
             if (array[c] == input)
             {
@@ -84,8 +93,8 @@ public class ArrayTools
             }
         }
 
-        //Returns -1 if the index can not be found
-        return -1;
+        //Returns 0 if the index can not be found
+        return 0;
     }
 
     //Finds if an element is in the alphabet
