@@ -3,7 +3,7 @@
 public class Reflector
 {
     int alphabetSize;
-    char[] alphabet;
+    char[] panel;
     
     public Reflector()
     {
@@ -11,8 +11,7 @@ public class Reflector
         alphabetSize = EnigmaMachine.alphabetSize;
         
         //alphabet holds the reflector array used to give corresponding chars, filled randomly with ArrayTools
-        alphabet = new char[alphabetSize];
-        alphabet = ArrayTools.randomAlphabetArray();
+        panel = ArrayTools.randomAlphabetArray();
     }
     
     //Takes a char input and returns the opposite value (by index)
@@ -20,12 +19,18 @@ public class Reflector
     //Uses ArrayTools for the index lookup
     public char reflect(char input)
     {
-        return alphabet[(alphabetSize - ArrayTools.getIndex(input, alphabet)) - 1];
+        return panel[(alphabetSize - ArrayTools.getIndex(input, panel)) - 1];
     }
     
     //Exports the configuration
     public char[] exportConfig()
     {
-        return alphabet;
+        return panel;
+    }
+
+    //Speaks for itself, imports and assigns a configuration
+    public void importConfig(char[] input)
+    {
+        panel = input;
     }
 }
